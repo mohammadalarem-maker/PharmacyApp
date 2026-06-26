@@ -67,6 +67,10 @@ fun AddEditProductScreen(
         ActivityResultContracts.GetContent()
     ) { uri -> uri?.let { imageUri = it } }
 
+    val barcodeLauncher = rememberLauncherForActivityResult(
+        com.journeyapps.barcodescanner.ScanContract()
+    ) { result -> result.contents?.let { bc = it } }
+
     val cameraLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.TakePicture()
     ) { ok -> if (ok) imageUri = photoUri }
@@ -160,7 +164,7 @@ fun AddEditProductScreen(
 
             FormField(value = name, onValueChange = { name = it },
                 label = "اسم المنتج *", icon = Icons.Filled.MedicalServices)
-            FormField(value = bc, onValueChange = { bc = it },
+            FormField(value = bc, onValueChange = { bc = it }, trailingIcon = { IconButton(onClick = { barcodeLauncher.launch(com.journeyapps.barcodescanner.ScanOptions().setDesiredBarcodeFormats(com.journeyapps.barcodescanner.ScanOptions.ALL_CODE_TYPES).setCameraId(0).setBeepEnabled(true).setBarcodeImageEnabled(true)) }) { Icon(Icons.Filled.QrCodeScanner, null) } },
                 label = "الباركود", icon = Icons.Filled.QrCode)
             FormField(value = category, onValueChange = { category = it },
                 label = "الفئة / التصنيف", icon = Icons.Filled.Category)
@@ -261,23 +265,25 @@ fun AddEditProductScreen(
 
 @Composable
 fun FormField(
-    value         : String,
-    onValueChange : (String) -> Unit,
-    label         : String,
-    icon          : androidx.compose.ui.graphics.vector.ImageVector,
-    keyboardType  : KeyboardType = KeyboardType.Text,
-    maxLines      : Int          = 1,
-    modifier      : Modifier     = Modifier.fillMaxWidth()
+    value: String,
+    onValueChange: (String) -> Unit,
+    label: String,
+    icon: androidx.compose.ui.graphics.vector.ImageVector,
+    keyboardType: KeyboardType = KeyboardType.Text,
+    maxLines: Int = 1,
+    modifier: Modifier = Modifier.fillMaxWidth(),
+    trailingIcon: @Composable (() -> Unit)? = null
 ) {
     OutlinedTextField(
-        value         = value,
+        value = value,
         onValueChange = onValueChange,
-        label         = { Text(label) },
-        leadingIcon   = { Icon(icon, null, Modifier.size(20.dp)) },
+        label = { Text(label) },
+        leadingIcon = { Icon(icon, null, Modifier.size(20.dp)) },
+        trailingIcon = trailingIcon,
         keyboardOptions = KeyboardOptions(keyboardType = keyboardType),
-        maxLines      = maxLines,
-        shape         = RoundedCornerShape(10.dp),
-        modifier      = modifier
+        maxLines = maxLines,
+        shape = RoundedCornerShape(10.dp),
+        modifier = modifier
     )
 }
 
