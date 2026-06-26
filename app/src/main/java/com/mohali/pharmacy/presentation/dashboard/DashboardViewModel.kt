@@ -15,7 +15,7 @@ data class DashboardUiState(
     val allProducts   : List<Product> = emptyList(),
     val todaySales    : Double        = 0.0,
     val lowStockCount : Int           = 0,
-    val cart          : List<CartItem>= emptyList(),
+    val cart          : List<CartItem> = emptyList(),
     val isLoading     : Boolean       = false,
     val error         : String?       = null,
     val message       : String?       = null

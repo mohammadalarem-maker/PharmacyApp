@@ -15,7 +15,7 @@ data class Invoice(
     val invoiceNumber : String           = "",
     val customerName  : String           = "",
     val customerPhone : String           = "",
-    val items         : List<InvoiceItem>= emptyList(),
+    val items         : List<InvoiceItem> = emptyList(),
     val subtotal      : Double           = 0.0,
     val discount      : Double           = 0.0,
     val tax           : Double           = 0.0,
