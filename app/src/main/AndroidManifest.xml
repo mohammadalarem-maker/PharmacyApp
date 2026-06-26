@@ -24,7 +24,7 @@
         android:theme="@style/Theme.PharmacyApp">
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.mohali.pharmacy.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
