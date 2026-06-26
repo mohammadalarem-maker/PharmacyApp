@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace  = "com.mohali.pharmacy"
+    namespace  = "com.pharm.appalsarem"
     compileSdk = 35
 
     defaultConfig {
-        applicationId          = "com.mohali.pharmacy"
+        applicationId          = "com.pharm.appalsarem"
         minSdk                 = 26
         targetSdk              = 35
         versionCode            = 1
