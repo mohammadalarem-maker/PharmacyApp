@@ -136,7 +136,7 @@ fun CreateInvoiceScreen(
                                         else it.removeAt(i)
                                     }
                                 }, Modifier.size(30.dp)) {
-                                    Icon(Icons.Filled.Remove, null, tint = ErrorRed, Modifier.size(16.dp))
+                                    Icon(Icons.Filled.Remove, null, modifier = Modifier.size(16.dp), tint = ErrorRed)
                                 }
                                 Text("${ci.quantity}", fontWeight = FontWeight.Bold,
                                     modifier = Modifier.padding(horizontal = 4.dp))
@@ -145,12 +145,12 @@ fun CreateInvoiceScreen(
                                         it[i] = it[i].copy(quantity = ci.quantity + 1)
                                     }
                                 }, Modifier.size(30.dp)) {
-                                    Icon(Icons.Filled.Add, null, tint = SuccessGreen, Modifier.size(16.dp))
+                                    Icon(Icons.Filled.Add, null, modifier = Modifier.size(16.dp), tint = SuccessGreen)
                                 }
                                 IconButton(onClick = {
                                     cartItems = cartItems.toMutableList().also { it.removeAt(i) }
                                 }, Modifier.size(30.dp)) {
-                                    Icon(Icons.Filled.Close, null, tint = ErrorRed, Modifier.size(16.dp))
+                                    Icon(Icons.Filled.Close, null, modifier = Modifier.size(16.dp), tint = ErrorRed)
                                 }
                             }
                         }
